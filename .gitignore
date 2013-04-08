@@ -10,6 +10,7 @@ src/jline/target/
 
 #mbench
 reports/
+mbench.last.date
 
 # other
 bin/
