@@ -19,7 +19,7 @@ object Build extends Build {
   def extracted(state: State) = Project extract state
 
   lazy val buildSettings:Seq[Setting[_]] = Seq(
-    organization       := "org.mbench-lib",
+    organization       := "com.github.sbocq",
 	version            := "0.1",
 	manifestSetting,
     crossScalaVersions := Seq("2.9.3"),
