@@ -55,6 +55,7 @@ object Build extends Build {
 	Collect.settings         ++ 
 	SbtScalariform.scalariformSettings ++	
 	MimaPlugin.mimaDefaultSettings ++
+	Publish.settings ++
 	buildSettings ++
     Seq(
 	  fork := true,

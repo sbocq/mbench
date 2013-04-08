@@ -24,25 +24,25 @@ import mbench.MBench.logout
 /**
  * The main benchmark class.
  *
- * A benchmark specifies a sequence of input values `I` that must be fed to a function under test, the 
- * results to report for each execution of a test and how to report these results. Once this is 
+ * A benchmark specifies a sequence of input values `I` that must be fed to a function under test, the
+ * results to report for each execution of a test and how to report these results. Once this is
  * specified, the same benchmark object can be reused to evaluate different tests in multiple configurations.
- *   
- * The evaluation is kicked off by invoking one of the `apply` methods. One kind of `apply` methods evaluate 
- * tests that depend only on the input of the benchmark. The other kind of `apply` methods take 
+ *
+ * The evaluation is kicked off by invoking one of the `apply` methods. One kind of `apply` methods evaluate
+ * tests that depend only on the input of the benchmark. The other kind of `apply` methods take
  * an additional configuration parameter, which may setup a different runtime for a test for each input
  * of the benchmark or contain additional static configuration parameters, which remain constant
  * throughout the execution of the benchmark (see [[mbench.benchmark.Config]]).
  *
- * To ensure that the evaluations of each tests in a benchmark are independent from each other, each 
- * execution is forked in a fresh clone of the current JVM where the `apply` method is invoked. This 
- * clone is started with the `-server` option and inherits the environment and the configuration options 
- * of the current JVM (e.g. classpath, options, etc.). ''Note this method assumes that the JVM 
+ * To ensure that the evaluations of each tests in a benchmark are independent from each other, each
+ * execution is forked in a fresh clone of the current JVM where the `apply` method is invoked. This
+ * clone is started with the `-server` option and inherits the environment and the configuration options
+ * of the current JVM (e.g. classpath, options, etc.). ''Note this method assumes that the JVM
  * from which benchmarks are launched is a server VM, else this method will fail''.
  *
  * The execution times of a test are measured for each input of the benchmark and then reported
- * in real-time in a table, where each row corresponds to one input of the benchmark, which is 
- * stored in the first column. By default the table is written to a '.dat' file where column values 
+ * in real-time in a table, where each row corresponds to one input of the benchmark, which is
+ * stored in the first column. By default the table is written to a '.dat' file where column values
  * are separated by spaces like this:
  * {{{
  * #|             cycles |            time[s] |            cvar[%]
@@ -83,7 +83,7 @@ import mbench.MBench.logout
  * to a test. Examples of this can be found in the companion project `mbench-benchmarks`.
  *
  * Benchmark are created using the factory methods in the companion object of this class.
- *  
+ *
  * @tparam I  The type of input fed by a benchmark to a test.
  * @tparam C  The type of static configuration required by the columns of this benchmark.
  * @tparam R  The type of result reported by the benchmark.

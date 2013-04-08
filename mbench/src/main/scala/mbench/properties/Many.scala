@@ -21,7 +21,7 @@ package mbench
 package properties
 
 /**
- * Property type that can hold multiple values formatted 
+ * Property type that can hold multiple values formatted
  * as comma separated values (e.g. 1,2,3).
  */
 class Many[+T](val seq: Seq[T]) {

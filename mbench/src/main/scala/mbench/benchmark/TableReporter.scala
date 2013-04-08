@@ -20,7 +20,8 @@
 package mbench
 package benchmark
 
-/** A reporter that produces a table represented as an array stored in memory. 
+/**
+ * A reporter that produces a table represented as an array stored in memory.
  */
 object TableReporter extends Reporter[Table] {
 

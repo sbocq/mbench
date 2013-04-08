@@ -23,9 +23,10 @@ package gnuplot
 import fs.Folder
 import benchmark.{ Label, Measure, formatFileName }
 
-/** This object contains many methods to create plots and save them using 
+/**
+ * This object contains many methods to create plots and save them using
  * reasonable defaults.
- */ 
+ */
 object Gnuplot {
 
   private def allLabels(datFiles: Seq[DatFile]): Seq[Label[_]] =

@@ -20,7 +20,8 @@
 package mbench
 package benchmark
 
-/** A table that is represented as an array stored in memory. 
+/**
+ * A table that is represented as an array stored in memory.
  */
 class Table(val benchName: String, val testName: String, val configName: String, val labels: Vector[Label[_]], val rows: Vector[Seq[Any]]) extends Serializable {
 

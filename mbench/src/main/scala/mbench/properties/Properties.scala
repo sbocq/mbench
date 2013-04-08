@@ -22,18 +22,19 @@ package properties
 
 import java.util.{ Properties => JProps }
 
-/** Class representing application properties. 
- * 
- * An instance of this class looks up the value of a property either in system properties passed on the 
- * command line or in its associated property file if it is not found. If ultimately the file does 
- * not exist or an entry for that property is missing in this file, then it falls back on the 
+/**
+ * Class representing application properties.
+ *
+ * An instance of this class looks up the value of a property either in system properties passed on the
+ * command line or in its associated property file if it is not found. If ultimately the file does
+ * not exist or an entry for that property is missing in this file, then it falls back on the
  * default value specified when the property was declared (see [[mbench.properties.Property]]).
- * 
- * Not that the name of system properties passed on the command line must be prefixed by the name of 
- * the file associated to a Properties object. For example, if a integer property `foo` is associated to a 
- * properties file `bar.properties`, then the value of `foo` can be passed on the command line using 
+ *
+ * Not that the name of system properties passed on the command line must be prefixed by the name of
+ * the file associated to a Properties object. For example, if a integer property `foo` is associated to a
+ * properties file `bar.properties`, then the value of `foo` can be passed on the command line using
  * the syntax `-Dbar.foo=4`.
- * 
+ *
  * Properties are created using the factory methods declared in the companion object of this class.
  */
 class Properties private (fileName: String, props: JProps) {
@@ -45,10 +46,11 @@ class Properties private (fileName: String, props: JProps) {
     else ""
   }
 
-  /** Get the value of a property.
-   * 
+  /**
+   * Get the value of a property.
+   *
    * @param p the property.
-   * @return its value retrieved either from system properties, a property file or its default value 
+   * @return its value retrieved either from system properties, a property file or its default value
    *         depending on where it is found first.
    */
   def get[T](p: Property[T]): T = {
@@ -68,8 +70,9 @@ class Properties private (fileName: String, props: JProps) {
     p.valueFromString(s).fold(err => { ; p.defaultValue }, identity)
   }
 
-  /** Get the value of a property.
-   * 
+  /**
+   * Get the value of a property.
+   *
    * @param name the property name.
    * @param defaultValue the default value of the property.
    * @return its value retrieved either from system properties, a property file or its default value.
@@ -78,18 +81,20 @@ class Properties private (fileName: String, props: JProps) {
     get(Property[T](name, null, defaultValue))
 }
 
-/** Factory object for properties. 
+/**
+ * Factory object for properties.
  */
 object Properties {
 
-   /** Load a property file. 
-    * 
-    * If the file does not exists, the method returns an empty property object as if the file 
-    * existed but did not declare any property.
-    *   
-    * @param fileName the file name in which to search for a property in case it is not specified 
-    *                 as system properties. 
-    */
+  /**
+   * Load a property file.
+   *
+   * If the file does not exists, the method returns an empty property object as if the file
+   * existed but did not declare any property.
+   *
+   * @param fileName the file name in which to search for a property in case it is not specified
+   *                 as system properties.
+   */
   def load(fileName: String): Properties = {
     val alternateFileName = System.getProperty(fileName)
     val file = if (alternateFileName == null) new java.io.File(fileName) else {

@@ -22,7 +22,7 @@ package benchmark
 
 import java.io.{ PrintWriter, PrintStream }
 
-/** 
+/**
  * A benchmark reporter that reports its output on the console.
  */
 object ConsoleReporter extends Reporter[Unit] {

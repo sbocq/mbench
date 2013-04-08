@@ -23,19 +23,19 @@ package mbench.benchmark
  * A configuration for a test in a benchmark.
  *
  * In addition to the input of a benchmark, tests can take a configuration
- * as parameter, see the factory methods in [[mbench.benchmark.Test]] or [[mbench.benchmark.TestSeq]]. 
- * A configuration is either empty, a static configuration `C` (see [[mbench.benchmark.StaticConfig]]), a 
- * runtime configuration (see [[mbench.benchmark.RuntimeConfig]]) that creates a setup `S`, 
+ * as parameter, see the factory methods in [[mbench.benchmark.Test]] or [[mbench.benchmark.TestSeq]].
+ * A configuration is either empty, a static configuration `C` (see [[mbench.benchmark.StaticConfig]]), a
+ * runtime configuration (see [[mbench.benchmark.RuntimeConfig]]) that creates a setup `S`,
  * or the composition of runtime configuration and a static configuration.
- * 
- * Runtime and static configurations are created using the factory methods in the 
- * companion object of this class. Eventually, a runtime configuration can be combined 
+ *
+ * Runtime and static configurations are created using the factory methods in the
+ * companion object of this class. Eventually, a runtime configuration can be combined
  * with a static configuration using its `and` combinator.
- * 
- * See also the factory methods in the companion objects of [[mbench.benchmark.Test]] 
- * and [[mbench.benchmark.TestSeq]], which make it easy to declare tests that depend 
+ *
+ * See also the factory methods in the companion objects of [[mbench.benchmark.Test]]
+ * and [[mbench.benchmark.TestSeq]], which make it easy to declare tests that depend
  * on either the input of a benchmark, a runtime and/or a static configurations.
- *  
+ *
  * @tparam I The type of the input of a benchmark.
  * @tparam C The type of the static configuration.
  * @tparam S The type of setup created by a runtime configuration.
@@ -77,12 +77,12 @@ sealed trait Config[-I, +C, S] extends Serializable {
 }
 
 /**
- * A static configuration is a configuration that remains constant throughout the execution 
+ * A static configuration is a configuration that remains constant throughout the execution
  * of a benchmark.
- * 
- * Tests that depend on a static configuration are created either using the `static` factory 
- * method, or the `runtimeStatic` methods of their companion object if they also depend 
- * on a runtime configuration (see [[mbench.benchmark.Test]], [[mbench.benchmark.TestSeq]] or 
+ *
+ * Tests that depend on a static configuration are created either using the `static` factory
+ * method, or the `runtimeStatic` methods of their companion object if they also depend
+ * on a runtime configuration (see [[mbench.benchmark.Test]], [[mbench.benchmark.TestSeq]] or
  * [[mbench.benchmark.RuntimeConfig]]).
  *
  * Static configurations may also be also combined together using the `extend` method.
@@ -121,9 +121,9 @@ class StaticConfig[+C](val names: Seq[String], _value: => C) extends Config[Any,
 
 /**
  * A runtime configuration creates an new setup `S` for each input `I` of
- * a benchmark before it evaluates the test over several runs. This means that 
- * the time it takes to create a setup (e.g. a thread pool) is not accounted in 
- * the execution times measured for a given test. For instance, for each 
+ * a benchmark before it evaluates the test over several runs. This means that
+ * the time it takes to create a setup (e.g. a thread pool) is not accounted in
+ * the execution times measured for a given test. For instance, for each
  * input `I` of the benchmark:
  *
  *   1. the benchmark creates a new setup by calling the `setUp` method,
@@ -131,24 +131,24 @@ class StaticConfig[+C](val names: Seq[String], _value: => C) extends Config[Any,
  *      its execution time is measured,
  *   3. then, its runtime configuration is teared down using the `tearDown` method.
  *
- * Tests that depend on a runtime configuration are created either using the `runtime` factory 
- * method, or the `runtimeStatic` methods of their companion object if they also depend 
- * on a static configuration (see [[mbench.benchmark.Test]], [[mbench.benchmark.TestSeq]] or 
+ * Tests that depend on a runtime configuration are created either using the `runtime` factory
+ * method, or the `runtimeStatic` methods of their companion object if they also depend
+ * on a static configuration (see [[mbench.benchmark.Test]], [[mbench.benchmark.TestSeq]] or
  * [[mbench.benchmark.RuntimeConfig]]).
  *
  * @tparam I the input of the benchmark used to instantiate a new setup.
  * @tparam S the type of setup instantiated by this configuration (e.g. an `ExecutorService`).
- * 
+ *
  * @param name the name of the runtime configuration
  * @param setup    a function that creates a setup that depends on the input of a
  *        benchmark before the evaluation of a test in several runs.
  * @param teardown a function that tears down a setup after the evaluation of a test.
- * 
+ *
  */
 class RuntimeConfig[-I, S](val name: String, setup: I => S, teardown: S => Unit) extends Config[I, Any, S] {
 
   def names = Seq(name.toOption).flatten
-  
+
   def value: Any = None
 
   def setUp(i: I): S = setup(i)

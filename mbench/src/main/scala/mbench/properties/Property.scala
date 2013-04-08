@@ -21,21 +21,22 @@ package mbench
 package properties
 
 /**
- * Class that represents a property. 
- * 
+ * Class that represents a property.
+ *
  * The types supported are:
  * Boolean, Byte, Char, Double, Float, Int, Long, Short, String, [[mbench.fs.Path]], [[mbench.properties.Many]].
- * 
+ *
  * @param name         the name of the property.
  * @param properties   the file name to which this property is associated.
  * @param defaultValue the default value of this property.
- * 
+ *
  */
 case class Property[T](name: String, properties: Properties, defaultValue: T)(implicit val tag: ClassTag[T]) {
 
-  /** Return the value of this property by looking up its associated properties object 
+  /**
+   * Return the value of this property by looking up its associated properties object
    * (see [[mbench.properties.Properties]]).
-   * 
+   *
    * @return the value of this property.
    */
   lazy val get = properties.get(this)

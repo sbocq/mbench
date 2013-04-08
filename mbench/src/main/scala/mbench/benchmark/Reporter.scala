@@ -21,7 +21,7 @@ package mbench.benchmark
 
 /**
  * A reporter creates a report that is opened at the beginning of a benchmark
- * and updated repeatedly for each input of the benchmark as new results become 
+ * and updated repeatedly for each input of the benchmark as new results become
  * available.
  *
  * @tparam R The type of the result created by the reporter after
