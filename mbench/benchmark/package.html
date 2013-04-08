@@ -1,0 +1,563 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>mbench.benchmark</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../lib/template.css" />
+      <script type="text/javascript" src="../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="sh_highlightDocument('../lib/', '.min.js');" class="value">
+      <div id="definition">
+        <img src="../../lib/package_big.png" />
+        <p id="owner"><a name="mbench" class="extype" href="../package.html">mbench</a></p>
+        <h1>benchmark</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">benchmark</span>
+      </span>
+      </h4>
+      
+      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>Collection of benchmarking functions
+</p></div></div>
+    
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="mbench.benchmark.Benchmark" data-isabs="false">
+      <a id="Benchmark:Benchmark[I, C, R]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Benchmark.html"><span class="name">Benchmark</span></a><span class="tparams">[<span name="I">I</span>, <span name="C">-C</span>, <span name="R">R</span>]</span><span class="params">(<span name="name">name: String</span>, <span name="is">is: Seq[I]</span>, <span name="ilabel">ilabel: Label[I]</span>, <span name="columns">columns: Vector[mbench.benchmark.Column[I, C, _]]</span>, <span name="reporter">reporter: Reporter[R]</span>, <span name="warmups">warmups: Int</span>, <span name="runs">runs: Int</span>, <span name="quiet">quiet: Boolean</span>)</span><span class="result"> extends Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">The main benchmark class.</p>
+    </li><li visbl="pub" name="mbench.benchmark.Column" data-isabs="false">
+      <a id="Column:Column[I, C, T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Column.html"><span class="name">Column</span></a><span class="tparams">[<span name="I">-I</span>, <span name="C">-C</span>, <span name="T">+T</span>]</span><span class="params">(<span name="label">label: Label[T]</span>, <span name="compute">compute: (State, I, C, Double, Double) ⇒ (State, T)</span>)</span><span class="result"> extends Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">This class represents columns whose values are computed during the execution of a benchmark.</p>
+    </li><li visbl="pub" name="mbench.benchmark.Config" data-isabs="true">
+      <a id="Config:Config[I, C, S]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Config.html"><span class="name">Config</span></a><span class="tparams">[<span name="I">-I</span>, <span name="C">+C</span>, <span name="S">S</span>]</span><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">A configuration for a test in a benchmark.</p>
+    </li><li visbl="pub" name="mbench.benchmark.package.EnrichedString" data-isabs="false">
+      <a id="EnrichedString:EnrichedString"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$EnrichedString.html"><span class="name">EnrichedString</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="mbench.benchmark.InputTest" data-isabs="false">
+      <a id="InputTest:InputTest[I]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="InputTest.html"><span class="name">InputTest</span></a><span class="tparams">[<span name="I">I</span>]</span><span class="result"> extends Test[Any, Any, I]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">The class of tests that that take only on the input of a benchmark as
+parameter.</p>
+    </li><li visbl="pub" name="mbench.benchmark.InputTestSeq" data-isabs="false">
+      <a id="InputTestSeq:InputTestSeq[I]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="InputTestSeq.html"><span class="name">InputTestSeq</span></a><span class="tparams">[<span name="I">I</span>]</span><span class="result"> extends TestSeq[Any, Any, I]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">The class of test sequences that that take only on the input of a benchmark as
+parameter.</p>
+    </li><li visbl="pub" name="mbench.benchmark.Label" data-isabs="true">
+      <a id="Label:Label[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Label.html"><span class="name">Label</span></a><span class="tparams">[<span name="T">+T</span>]</span><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">The label of a column.</p>
+    </li><li visbl="pub" name="mbench.benchmark.Measure" data-isabs="false">
+      <a id="Measure:Measure"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Measure.html"><span class="name">Measure</span></a><span class="params">(<span name="time">time: Double</span>, <span name="cvar">cvar: Double</span>)</span><span class="result"> extends Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Class that captures the median of the execution times and the coefficient
+of variation of a test over several runs for a given input of a benchmark.</p>
+    </li><li visbl="pub" name="mbench.benchmark.Report" data-isabs="true">
+      <a id="Report:Report[R]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Report.html"><span class="name">Report</span></a><span class="tparams">[<span name="R">R</span>]</span><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Report that is updated in real-time by a benchmark.</p>
+    </li><li visbl="pub" name="mbench.benchmark.Reporter" data-isabs="true">
+      <a id="Reporter:Reporter[R]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Reporter.html"><span class="name">Reporter</span></a><span class="tparams">[<span name="R">R</span>]</span><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">A reporter creates a report that is opened at the beginning of a benchmark
+and updated repeatedly for each input of the benchmark as new results become
+available.</p>
+    </li><li visbl="pub" name="mbench.benchmark.RuntimeConfig" data-isabs="false">
+      <a id="RuntimeConfig:RuntimeConfig[I, S]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="RuntimeConfig.html"><span class="name">RuntimeConfig</span></a><span class="tparams">[<span name="I">-I</span>, <span name="S">S</span>]</span><span class="result"> extends Config[I, Any, S]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">A runtime configuration creates an new setup <code>S</code> for each input <code>I</code> of
+a benchmark before it evaluates the test over several runs.</p>
+    </li><li visbl="pub" name="mbench.benchmark.RuntimeStaticTest" data-isabs="false">
+      <a id="RuntimeStaticTest:RuntimeStaticTest[S, C]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="RuntimeStaticTest.html"><span class="name">RuntimeStaticTest</span></a><span class="tparams">[<span name="S">S</span>, <span name="C">C</span>]</span><span class="result"> extends Test[S, C, Any]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">The class of tests that take a setup created by a runtime
+configuration and the value of a static configuration as
+parameters.</p>
+    </li><li visbl="pub" name="mbench.benchmark.RuntimeStaticTestSeq" data-isabs="false">
+      <a id="RuntimeStaticTestSeq:RuntimeStaticTestSeq[S, C]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="RuntimeStaticTestSeq.html"><span class="name">RuntimeStaticTestSeq</span></a><span class="tparams">[<span name="S">S</span>, <span name="C">C</span>]</span><span class="result"> extends TestSeq[S, C, Any]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">The class of test sequences that take a setup created by a runtime
+configuration and the value of a static configuration as
+parameters.</p>
+    </li><li visbl="pub" name="mbench.benchmark.RuntimeTest" data-isabs="false">
+      <a id="RuntimeTest:RuntimeTest[S, I]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="RuntimeTest.html"><span class="name">RuntimeTest</span></a><span class="tparams">[<span name="S">S</span>, <span name="I">I</span>]</span><span class="result"> extends Test[S, Any, I]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">The class of tests that take a setup created by a runtime
+configuration and the input of a benchmark as parameters.</p>
+    </li><li visbl="pub" name="mbench.benchmark.RuntimeTestSeq" data-isabs="false">
+      <a id="RuntimeTestSeq:RuntimeTestSeq[S, I]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="RuntimeTestSeq.html"><span class="name">RuntimeTestSeq</span></a><span class="tparams">[<span name="S">S</span>, <span name="I">I</span>]</span><span class="result"> extends TestSeq[S, Any, I]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">The class of test sequences that take a setup created by a runtime
+configuration and the input of a benchmark as parameters.</p>
+    </li><li visbl="pub" name="mbench.benchmark.SeqSpec" data-isabs="false">
+      <a id="SeqSpec:SeqSpec[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SeqSpec.html"><span class="name">SeqSpec</span></a><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">A sequence specification is a class that permits to combine tests that must be benchmarked in a sequence
+at each run.</p>
+    </li><li visbl="pub" name="mbench.benchmark.package#State" data-isabs="false">
+      <a id="State:State"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">State</span><span class="result"> = <span name="scala.collection.immutable.Map" class="extype">Map</span>[String, <span name="scala.Any" class="extype">Any</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">State of the banchmark
+</p><div class="fullcomment"><div class="comment cmt"><p>State of the banchmark
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="mbench.benchmark.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="mbench.benchmark.StaticConfig" data-isabs="false">
+      <a id="StaticConfig:StaticConfig[C]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="StaticConfig.html"><span class="name">StaticConfig</span></a><span class="tparams">[<span name="C">+C</span>]</span><span class="result"> extends Config[Any, C, Any]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">A static configuration is a configuration that remains constant throughout the execution
+of a benchmark.</p>
+    </li><li visbl="pub" name="mbench.benchmark.StaticTest" data-isabs="false">
+      <a id="StaticTest:StaticTest[C, I]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="StaticTest.html"><span class="name">StaticTest</span></a><span class="tparams">[<span name="C">C</span>, <span name="I">I</span>]</span><span class="result"> extends Test[Any, C, I]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">The class of tests that take the value of a static
+configuration and the input of a benchmark as parameters.</p>
+    </li><li visbl="pub" name="mbench.benchmark.StaticTestSeq" data-isabs="false">
+      <a id="StaticTestSeq:StaticTestSeq[C, I]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="StaticTestSeq.html"><span class="name">StaticTestSeq</span></a><span class="tparams">[<span name="C">C</span>, <span name="I">I</span>]</span><span class="result"> extends TestSeq[Any, C, I]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">The class of test sequences that take the value of a static
+configuration and the input of a benchmark as parameters.</p>
+    </li><li visbl="pub" name="mbench.benchmark.Table" data-isabs="false">
+      <a id="Table:Table"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Table.html"><span class="name">Table</span></a><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">A table that is represented as an array stored in memory.</p>
+    </li><li visbl="pub" name="mbench.benchmark.Test" data-isabs="true">
+      <a id="Test:Test[S, C, I]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Test.html"><span class="name">Test</span></a><span class="tparams">[<span name="S">-S</span>, <span name="C">-C</span>, <span name="I">-I</span>]</span><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Generic test specification.</p>
+    </li><li visbl="pub" name="mbench.benchmark.TestSeq" data-isabs="true">
+      <a id="TestSeq:TestSeq[S, C, I]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TestSeq.html"><span class="name">TestSeq</span></a><span class="tparams">[<span name="S">-S</span>, <span name="C">-C</span>, <span name="I">-I</span>]</span><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Generic test sequence specification.</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="mbench.benchmark.Benchmark" data-isabs="false">
+      <a id="Benchmark:Benchmark"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Benchmark$.html"><span class="name">Benchmark</span></a><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory methods for benchmarks.</p>
+    </li><li visbl="pub" name="mbench.benchmark.Column" data-isabs="false">
+      <a id="Column:Column"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Column$.html"><span class="name">Column</span></a><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory method for columns.</p>
+    </li><li visbl="pub" name="mbench.benchmark.Config" data-isabs="false">
+      <a id="Config:Config"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Config$.html"><span class="name">Config</span></a><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory methods for configuration types.</p>
+    </li><li visbl="pub" name="mbench.benchmark.ConsoleReporter" data-isabs="false">
+      <a id="ConsoleReporter:ConsoleReporter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ConsoleReporter$.html"><span class="name">ConsoleReporter</span></a><span class="result"> extends Reporter[Unit]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">A benchmark reporter that reports its output on the console.</p>
+    </li><li visbl="pub" name="mbench.benchmark.Label" data-isabs="false">
+      <a id="Label:Label"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Label$.html"><span class="name">Label</span></a><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="mbench.benchmark.Measure" data-isabs="false">
+      <a id="Measure:Measure"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Measure$.html"><span class="name">Measure</span></a><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="mbench.benchmark.package#StderrReporter" data-isabs="false">
+      <a id="StderrReporter:Reporter[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">StderrReporter</span><span class="result">: <a name="mbench.benchmark.Reporter" class="extype" href="Reporter.html">Reporter</a>[<span name="scala.Unit" class="extype">Unit</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="mbench.benchmark.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="mbench.benchmark.package#StdoutReporter" data-isabs="false">
+      <a id="StdoutReporter:Reporter[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">StdoutReporter</span><span class="result">: <a name="mbench.benchmark.Reporter" class="extype" href="Reporter.html">Reporter</a>[<span name="scala.Unit" class="extype">Unit</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="mbench.benchmark.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="mbench.benchmark.TableReporter" data-isabs="false">
+      <a id="TableReporter:TableReporter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="TableReporter$.html"><span class="name">TableReporter</span></a><span class="result"> extends Reporter[Table]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">A reporter that produces a table represented as an array stored in memory.</p>
+    </li><li visbl="pub" name="mbench.benchmark.Test" data-isabs="false">
+      <a id="Test:Test"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Test$.html"><span class="name">Test</span></a><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="mbench.benchmark.TestSeq" data-isabs="false">
+      <a id="TestSeq:TestSeq"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="TestSeq$.html"><span class="name">TestSeq</span></a><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="mbench.benchmark.Util" data-isabs="false">
+      <a id="Util:Util"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Util$.html"><span class="name">Util</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="mbench.benchmark.package#enrichString" data-isabs="false">
+      <a id="enrichString(String):EnrichedString"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">enrichString</span><span class="params">(<span name="s">s: String</span>)</span><span class="result">: <a name="mbench.benchmark.package.EnrichedString" class="extype" href="package$$EnrichedString.html">EnrichedString</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="mbench.benchmark.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="mbench.benchmark.package#formatFileName" data-isabs="false">
+      <a id="formatFileName(Seq[Option[String]]):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">formatFileName</span><span class="params">(<span name="ss">ss: Seq[<span name="scala.Option" class="extype">Option</span>[String]]</span>)</span><span class="result">: String</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="mbench.benchmark.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="mbench.benchmark.package#formatFileName" data-isabs="false">
+      <a id="formatFileName(String,String*):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">formatFileName</span><span class="params">(<span name="s1">s1: String</span>, <span name="ss">ss: String*</span>)</span><span class="result">: String</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="mbench.benchmark.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="mbench.benchmark.package#formatNames" data-isabs="false">
+      <a id="formatNames(Seq[Option[String]],String):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">formatNames</span><span class="params">(<span name="ss">ss: Seq[<span name="scala.Option" class="extype">Option</span>[String]]</span>, <span name="sep">sep: String</span>)</span><span class="result">: String</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="mbench.benchmark.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
