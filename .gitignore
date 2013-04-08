@@ -2,30 +2,27 @@
 *~
 
 #sbt
-/project/target/
-/project/project/target
+project/target/
+project/project/target
 
-/target/
-/src/jline/target/
+target/
+src/jline/target/
 
-# target directories for ant build
-/build/
-/dists/
+#mbench
+reports/
 
 # other
-/out/
-/bin/
-/sandbox/
+bin/
 
 # eclipse, intellij
-/.classpath
-/.project
-/src/intellij/*.iml
-/src/intellij/*.ipr
-/src/intellij/*.iws
-/.cache
-/.idea
-/.settings
+.classpath
+.project
+src/intellij/*.iml
+src/intellij/*.ipr
+src/intellij/*.iws
+.cache
+.idea
+.settings
 .idea_modules
 
 # bak files produced by ./cleanup-commit
