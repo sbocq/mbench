@@ -1,4 +1,4 @@
-set title "maps - 24*amd64, 1.7.0_09-b05"
+set title "maps - 24*amd64, 1.7.0_04-ea-b06"
 set xlabel "Elems"
 set ylabel "Throughput[elems/s]"
 #set key out

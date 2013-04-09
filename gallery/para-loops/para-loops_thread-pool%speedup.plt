@@ -1,4 +1,4 @@
-set title "para-loops:para-loops:thread-pool - 24*amd64, 1.7.0_09-b05"
+set title "para-loops:thread-pool - 24*amd64, 1.7.0_04-ea-b06"
 set xlabel "Threads"
 set ylabel "Speedup"
 set xtics 1

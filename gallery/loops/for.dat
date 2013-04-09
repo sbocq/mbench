@@ -1,16 +1,16 @@
-#Host:        ect1 (24*amd64)
+#Host:        megaphone (24*amd64)
 #OS:          Linux
-#JVM:         Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 1.7.0_09-b05
+#JVM:         Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 1.7.0_04-ea-b06
 #JVM options: [-XX:+UseNUMA,-XX:+UseCondCardMark,-Xss1M,-XX:MaxPermSize=128m,-XX:+UseParallelGC,-XX:+DoEscapeAnalysis,-Xms1024m,-Xmx1024m]
 #
-#date:        09/04/2013 14::26::32
+#date:        09/04/2013 18::42::32
 #benchmark:   loops
 #test:        for
 #config:      None
 
 #|             cycles |            time[s] |            cvar[%] | throughput[cycles/s] |
-             5000000                 .025                9.317        200000000.000
-            10000000                 .040                6.735        250000000.000
-            15000000                 .061                3.727        245901639.344
+             5000000                 .017                 .000        294117647.059
+            10000000                 .034                 .000        294117647.059
+            15000000                 .051                1.740        294117647.059
 
-#end time:09/04/2013 14::26::35
+#end time:09/04/2013 18::42::35

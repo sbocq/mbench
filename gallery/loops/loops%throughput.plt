@@ -1,4 +1,4 @@
-set title "loops - 24*amd64, 1.7.0_09-b05"
+set title "loops - 24*amd64, 1.7.0_04-ea-b06"
 set xlabel "Cycles"
 set ylabel "Throughput[cycles/s]"
 #set key out
