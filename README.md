@@ -15,11 +15,11 @@ See the [current API documentation](http://sbocq.github.io/mbench) for more info
 
 ## Examples
 
-The examples below can be found in the `mbench-benchmarks` project and launched from your favorite IDE or from `sbt` using the `run` command. All the benchmarks shown in this section where run on a 24-cores (2200MHz each) Opteron server with the following JVM flags: `-server` `-XX:+UseNUMA` `-XX:+UseCondCardMark` `-Xss1M` `-XX:MaxPermSize=128m` `-XX:+UseParallelGC` `-XX:+DoEscapeAnalysis` `-Xms1024m` `-Xmx1024m`.
+The examples below can be found in the `mbench-benchmarks` project and launched from your favorite IDE or from `sbt` using the `run` command. All the benchmarks shown in this section where run on a 24-cores (2200MHz each) Opteron server configured with Linux 3.8.6 and the realtime preemption patch, running Scala 2.9.3, with the following JVM flags: `-server` `-XX:+UseNUMA` `-XX:+UseCondCardMark` `-Xss1M` `-XX:MaxPermSize=128m` `-XX:+UseParallelGC` `-XX:+DoEscapeAnalysis` `-Xms1024m` `-Xmx1024m`.
 
 ## Loops
 
-The following benchmark compares the performance of several loops for different amount of iterations.
+The following benchmark compares the performance of several loops for different number of iterations.
 
 ```scala
 object Loops {
@@ -84,7 +84,8 @@ The following plots will be automatically generated. If we look at the time plot
 ![loops%time.plt](https://raw.github.com/sbocq/mbench/master/gallery/loops/loops%25time.png)
 
 However, this does not tell us if the time increases linearly with the number of cycles. This is why generating a second plot of the 
-throughput against the number of cycles is interesting. According to the figure below, we can see that loops are still optimized beyond 15 millions cycles.
+throughput against the number of cycles is interesting. According to the figure below, we can see that, as expected, the number of cycles 
+per second remains independent from the number of iterations.
 
 ![loops%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/loops/loops%25throughput.png)
 
@@ -164,7 +165,7 @@ If we loop at the throughput plot below, we see again that the while-loop wins o
 
 ![para-loops%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/para-loops/para-loops_thread-pool%25throughput.png)
 
-But how well do they scale on multicore hardware with the number of threads? According to the speedup plot shown below, both the while-loop and the for-comprehension come close to the ideal parallel speedup and that it is not worth going beyond 24 threads. The version that does boxing creates so much garbage that it cannot be eliminated efficiently by the JVM above 4 threads (question: can this be improved by tuning the JVM?).
+But how well do they scale on multicore hardware with the number of threads? According to the speedup plot shown below, only the for-comprehension comes close to the ideal parallel speedup, but in all cases it is not worth going beyond 24 threads. The whil-loop, although it is the fastest, benefits from a parallel speedup up to 20 threads but it is less than ideal. And the version that does boxing creates so much garbage that it cannot be eliminated efficiently by the JVM above 8 threads (questions: What explains the different behaviors? Can it be improved by tuning the JVM?).
 
 ![para-loops%speedup.plt](https://raw.github.com/sbocq/mbench/master/gallery/para-loops/para-loops_thread-pool%25speedup.png)
 
@@ -266,6 +267,6 @@ the fastest of the three for `add` and `remove` operations.
 ![maps%time.plt](https://raw.github.com/sbocq/mbench/master/gallery/maps/maps%25time.png)
 
 If we look now at how the throughput scales with the number of elements, we see that the open hash map is not only the fastest of the pack but 
-that its operations can still be optimized as the number of elements increases, like the while-loop shown in our first example.
+that its add operation is still optimized (probably by the JIT) as the number of iterations increases (above 250000 additions - TODO: get rid of other X-tics).
 
 ![maps%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/maps/maps%25throughput.png)
