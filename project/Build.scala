@@ -60,7 +60,7 @@ object Build extends Build {
     Seq(
 	  fork := true,
 	  fork in test := true,
-	  javaOptions <++= (fullClasspath in Runtime).map(cp => Seq("-cp", cp.files.mkString(System.getProperty("path.separator")), "-Dmbench.log.stdout=true", "-Dmbench.date.dir=sbtrun")),
+	  javaOptions <++= (fullClasspath in Runtime).map(cp => Seq("-cp", cp.files.mkString(System.getProperty("path.separator")), "-Dmbench.log.stdout=true", "-Dmbench.new.date.dir=sbtrun")),
       libraryDependencies <++= scalaVersion(sv => Seq(
         Test.scalatest(sv)
       ))
