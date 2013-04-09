@@ -1,6 +1,7 @@
 set title "maps - 24*amd64, 1.7.0_04-ea-b06"
 set xlabel "Elems"
 set ylabel "Throughput[elems/s]"
+set xtics (50000,250000,500000)
 #set key out
 
 #set term png

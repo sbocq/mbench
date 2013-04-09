@@ -133,7 +133,12 @@ object Plot {
   /**
    * Set the major X tics
    */
-  def xtics(i: Int): String = "set xtics " + i
+  def xtics(x: Int): String = "set xtics " + x
+
+  /**
+   * Set a list of X tics
+   */
+  def xticList(xs: Int*): String = "set xtics " + xs.mkString("(", ",", ")")
 
   /**
    * Set the major Y tics

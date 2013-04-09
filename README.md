@@ -267,6 +267,6 @@ the fastest of the three for `add` and `remove` operations.
 ![maps%time.plt](https://raw.github.com/sbocq/mbench/master/gallery/maps/maps%25time.png)
 
 If we look now at how the throughput scales with the number of elements, we see that the open hash map is not only the fastest of the pack but 
-that its add operation is still optimized (probably by the JIT) as the number of iterations increases (above 250000 additions - TODO: get rid of other X-tics).
+that its add operation is still optimized (probably by the JIT) as the number of iterations increases, still above 300000 additions.
 
 ![maps%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/maps/maps%25throughput.png)
