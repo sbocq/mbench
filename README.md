@@ -81,12 +81,12 @@ object Loops {
 
 The following plots will be automatically generated. If we look at the time plot, as expected, we see that the time increases with the number of cycles.
 
-![loops%time.plt](https://raw.github.com/sbocq/mbench/master/gallery/loops/loops%time.png)
+![loops%time.plt](https://raw.github.com/sbocq/mbench/master/gallery/loops/loops%25time.png)
 
 However, this does not tell us if the time increases linearly with the number of cycles. This is why generating a second plot of the 
 throughput against the number of cycles is interesting. According to the figure below, we can see that loops are still optimized beyond 15 millions cycles.
 
-![loops%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/loops/loops%throughput.png)
+![loops%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/loops/loops%25throughput.png)
 
 ## Parallel Loops
 
@@ -162,11 +162,11 @@ object ParaLoops {
 
 If we loop at the throughput plot below, we see again that the while-loop wins over Scala's for-comprehension in scala 2.9.3 (contributions to migrate the build to Scala 2.10 are welcome) and that the loop that does excessive boxing is again the worst performer of the three. 
 
-![para-loops%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/para-loops/para-loops_thread-pool%throughput.png)
+![para-loops%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/para-loops/para-loops_thread-pool%25throughput.png)
 
 But how well do they scale on multicore hardware with the number of threads? According to the speedup plot shown below, both the while-loop and the for-comprehension come close to the ideal parallel speedup and that it is not worth going beyond 24 threads. The version that does boxing creates so much garbage that it cannot be eliminated efficiently by the JVM above 4 threads (question: can this be improved by tuning the JVM?).
 
-![para-loops%speedup.plt](https://raw.github.com/sbocq/mbench/master/gallery/para-loops/para-loops_thread-pool%speedup.png)
+![para-loops%speedup.plt](https://raw.github.com/sbocq/mbench/master/gallery/para-loops/para-loops_thread-pool%25speedup.png)
 
 ## Maps
 
@@ -263,9 +263,9 @@ object Maps {
 The time plot shows below tells us that, as expected, the time increases with the number of elements and that the open hash map is 
 the fastest of the three for `add` and `remove` operations. 
 
-![maps%time.plt](https://raw.github.com/sbocq/mbench/master/gallery/maps/maps%time.png)
+![maps%time.plt](https://raw.github.com/sbocq/mbench/master/gallery/maps/maps%25time.png)
 
 If we look now at how the throughput scales with the number of elements, we see that the open hash map is not only the fastest of the pack but 
 that its operations can still be optimized as the number of elements increases, like the while-loop shown in our first example.
 
-![maps%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/maps/maps%throughput.png)
+![maps%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/maps/maps%25throughput.png)
