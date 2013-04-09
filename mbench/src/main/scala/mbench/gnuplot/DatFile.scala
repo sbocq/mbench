@@ -32,7 +32,8 @@ import benchmark.Label
  *  - The other columns correspond are user specified columns (e.g. throughput, speedup, ...)
  *
  * @param  file the file holding the data
- * @param  testName the name of the benchmark
+ * @param  benchName the name of the benchmark
+ * @param  testName the name of the test
  * @param  configName the tag identifying a specific benchmark configuration (might be empty)
  * @param  labels the labels of the each column
  */
