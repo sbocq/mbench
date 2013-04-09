@@ -254,7 +254,7 @@ object Maps {
     val mres = benchmark.seq(mutableMap, MMapTest)
     val ores = benchmark.seq(openMap, MMapTest)
 
-    val plots = Gnuplot(ires ++ mres ++ ores)
+    val plots = Gnuplot(ires ++ mres ++ ores, Plot.xticList(input: _*))
     Gnuplot.save(plots)
   }
 
