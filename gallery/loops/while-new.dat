@@ -1,0 +1,16 @@
+#Host:        ect1 (24*amd64)
+#OS:          Linux
+#JVM:         Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 1.7.0_09-b05
+#JVM options: [-XX:+UseNUMA,-XX:+UseCondCardMark,-Xss1M,-XX:MaxPermSize=128m,-XX:+UseParallelGC,-XX:+DoEscapeAnalysis,-Xms1024m,-Xmx1024m]
+#
+#date:        09/04/2013 14::26::36
+#benchmark:   loops
+#test:        while-new
+#config:      None
+
+#|             cycles |            time[s] |            cvar[%] | throughput[cycles/s] |
+             5000000                 .043                3.090        116279069.767
+            10000000                 .083               32.419        120481927.711
+            15000000                 .119               23.790        126050420.168
+
+#end time:09/04/2013 14::26::39

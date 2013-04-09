@@ -1,0 +1,24 @@
+#Host:        ect1 (24*amd64)
+#OS:          Linux
+#JVM:         Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 1.7.0_09-b05
+#JVM options: [-XX:+UseNUMA,-XX:+UseCondCardMark,-Xss1M,-XX:MaxPermSize=128m,-XX:+UseParallelGC,-XX:+DoEscapeAnalysis,-Xms1024m,-Xmx1024m]
+#
+#date:        09/04/2013 14::28::16
+#benchmark:   para-loops
+#test:        for
+#config:      10000000
+
+#|            threads |            time[s] |            cvar[%] | throughput[cycles/s] |            speedup |
+                   1                 .037                6.696        270270270.270                1.000
+                   2                 .041                3.825        487804878.049                1.805
+                   3                 .041                3.390        731707317.073                2.707
+                   4                 .043                2.247        930232558.140                3.442
+                   8                 .044                3.714       1818181818.182                6.727
+                  12                 .045                6.863       2666666666.667                9.867
+                  16                 .044                7.306       3636363636.364               13.455
+                  20                 .045                5.738       4444444444.444               16.444
+                  24                 .050               13.306       4800000000.000               17.760
+                  26                 .064                4.352       4062500000.000               15.031
+                  28                 .067                6.710       4179104477.612               15.463
+
+#end time:09/04/2013 14::28::30
