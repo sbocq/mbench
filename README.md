@@ -84,8 +84,7 @@ The following plots will be automatically generated. If we look at the time plot
 ![loops%time.plt](https://raw.github.com/sbocq/mbench/master/gallery/loops/loops%25time.png)
 
 However, this does not tell us if the time increases linearly with the number of cycles. This is why generating a second plot of the 
-throughput against the number of cycles is interesting. According to the figure below, we can see that, as expected, the number of cycles 
-per second remains independent from the number of iterations.
+throughput against the number of cycles is interesting. According to the figure below, we can see that, as expected for this high number of iterations, the number of cycles per second is independent from the number of cycles.
 
 ![loops%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/loops/loops%25throughput.png)
 
