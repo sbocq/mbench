@@ -22,12 +22,22 @@ package gnuplot
 
 import fs.Folder
 import benchmark.{ Label, Measure, formatFileName }
+import properties._
 
 /**
  * This object contains many methods to create plots and save them using
  * reasonable defaults.
  */
 object Gnuplot {
+
+  val gnuplot = Properties.load("gnuplot.properties")
+
+  /**
+   * Specifies the list of special options that must be mentioned in the title of a plot (e.g. +UseNUMA).
+   *
+   * (default: none)
+   */
+  val titleIncludeOptions = Property("title.include.options", gnuplot, Many.empty[String])
 
   private def allLabels(datFiles: Seq[DatFile]): Seq[Label[_]] =
     Label.time +: datFiles.map(f => f.labels.drop(Measure.labels.size + 1)).flatten.distinct

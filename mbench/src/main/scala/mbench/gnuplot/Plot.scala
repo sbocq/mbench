@@ -84,7 +84,10 @@ class Plot(
     fileName + "%" + ylab + ".plt"
   }
 
-  private[this] final val titleSuffix: String = " - " + Host.shortString
+  private[this] final val titleSuffix: String = " - " + Host.Hardware.shortString + ", " + Host.javaRuntimeVersion + {
+    val options = Host.uncommonJvmSpecialOptions.filterNot(Gnuplot.titleIncludeOptions.get.contains)
+    if (options.isEmpty) "" else options.mkString(", [", ",", "]")
+  }
 
   def save(folder: Folder): Unit = {
     if (datFiles.isEmpty)
@@ -95,8 +98,8 @@ class Plot(
     val xlabel = datFiles.head.labels(0)
 
     val titlePrefix =
-      if (benchmarkName == fileName) // overview
-        benchmarkName
+      if (fileName.startsWith(benchmarkName)) // overview
+        fileName.replace('_', ':')
       else
         benchmarkName + ":" + fileName.replace('_', ':')
 
@@ -108,9 +111,9 @@ class Plot(
     out.println()
 
     out.println("#set term png")
-    out.println("#set output \"" + fileName + ".png\"")
+    out.println("#set output \"" + fileName + "%" + label.name + ".png\"")
     out.println("#set term postscript eps enhanced")
-    out.println("#set output \"" + fileName + ".eps\"")
+    out.println("#set output \"" + fileName + "%" + label.name + ".eps\"")
     out.println()
 
     out.print("plot " + plotLine(folder, datFiles.head))
