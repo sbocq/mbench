@@ -164,7 +164,7 @@ If we loop at the throughput plot below, we see again that the while-loop wins o
 
 ![para-loops%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/para-loops/para-loops_thread-pool%25throughput.png)
 
-But how well do they scale on multicore hardware with the number of threads? According to the speedup plot shown below, only the for-comprehension comes close to the ideal parallel speedup, but in all cases it is not worth going beyond 24 threads. The whil-loop, although it is the fastest, benefits from a parallel speedup up to 20 threads but it is less than ideal. And the version that does boxing creates so much garbage that it cannot be eliminated efficiently by the JVM above 8 threads (questions: What explains the different behaviors? Can it be improved by tuning the JVM?).
+But how well do they scale on multicore hardware with the number of threads? According to the speedup plot shown below, only the for-comprehension comes close to the ideal parallel speedup, and in all cases, it is not worth going beyond 24 threads. The while-loop, although it is the fastest, benefits from a parallel speedup up to at least 20 threads but it is less than ideal. And the version that does boxing creates so much garbage that it cannot be eliminated efficiently by the JVM between 8 and 12 threads (questions: What explains the different behaviors? Can it be improved by tuning the JVM?).
 
 ![para-loops%speedup.plt](https://raw.github.com/sbocq/mbench/master/gallery/para-loops/para-loops_thread-pool%25speedup.png)
 
