@@ -32,9 +32,9 @@ object Site {
 
   lazy val unidocSettings: Seq[sbt.Setting[_]] =
     site.includeScaladoc(docDirectory) ++ Seq(
-      scalacOptions in doc <++= (version, baseDirectory in LocalProject(aggregateName)).map { (v, rootBase) =>
-        val tagOrBranch = if (v.endsWith("-SNAPSHOT")) "develop" else v
-        val docSourceUrl = "https://github.com/sbocq/" + aggregateName + "/tree/" + tagOrBranch + "€{FILE_PATH}.scala"
+      scalacOptions in doc <++= (version, baseDirectory in LocalProject(aggregateName), baseDirectory).map { (v, rootBase, b) =>
+        val tagOrBranch = if (v.endsWith("-SNAPSHOT")) "develop" else ("v" + v)
+        val docSourceUrl = "https://github.com/sbocq/" + aggregateName + "/tree/" + tagOrBranch + "/" + b.name + "€{FILE_PATH}.scala"
         Seq("-sourcepath", rootBase.getAbsolutePath, "-doc-source-url", docSourceUrl)
       },
       Unidoc.unidocDirectory := file(docDirectory),
