@@ -2,22 +2,31 @@
 
 A microbenchmarking library for the JVM with a Gnuplot backend suitable for comparison and scalability benchmarks.
 
-Features:
+Table of Content:
+
+- [Features](#Features)
+- [Examples](#Examples)
+  - [Loops](#Loops)
+  - [Parallel Loops](#ParaLoops)
+  - [Maps](#Maps)
+- [Installing](#Installing)
+- [Building From Sources](#Building)
+- [Running The Examples](#Running)
+
+## <a id="Features"></a> Features
 
 - Benchmarks can be launched directly from a main class independently from any specific build environment.
 - Each benchmarks is executed in isolation of each other in a fresh clone of the master JVM and automatically inherits its settings (e.g. class paths, system settings, command line options, etc.).
-- Benchmarks can evaluate multiple tests for multiple inputs and in various configurations, which makes the library suitable for running scalability and comparison benchmarks.
-- The Gnuplot backend that saves the median execution time and the coefficient of variation for each input of the test in a `.dat` files.
-- The Gnuplot backend can use the `.dat` files to aggregate the results of multiple benchmarks in a single plot that help visualize how different tests compare with each other.
-- End users may specify custom columns that compute additional information in real-time (e.g. speedup or throughput).
+- A single benchmark definition can evaluate multiple tests for multiple inputs and in various configurations, which makes the library suitable for running scalability and comparison benchmarks.
+- The Gnuplot backend saves the median execution time and the coefficient of variation for each input of the test in a `.dat` files.
+- Results from multiple `.dat` can be aggregated in a single plot to visualize how different tests compare with each other.
+- End users can specify custom columns that enrich results in real-time (e.g. like speedup or throughput).
 
-See the [current API documentation](http://sbocq.github.io/mbench) for more information.
+## <a id="Examples"></a> Examples of Benchmarks
 
-## Examples
-
-The examples below can be found in the `mbench-benchmarks` project and launched from your favorite IDE or from `sbt` using the `run` command. All the benchmarks shown in this section where run on a 24-cores (2200MHz each) Opteron server configured with Linux 3.8.6 and the realtime preemption patch, running Scala 2.9.3, with the following JVM flags: `-server` `-XX:+UseNUMA` `-XX:+UseCondCardMark` `-Xss1M` `-XX:MaxPermSize=128m` `-XX:+UseParallelGC` `-XX:+DoEscapeAnalysis` `-Xms1024m` `-Xmx1024m`.
-
-## Loops
+The examples below are taken from the `mbench-benchmarks` project. All the benchmarks where run on a 24-cores (2200MHz each) Opteron server configured with Linux 3.8.6 and the realtime preemption patch, running Scala 2.9.3, with the following JVM flags: `-server` `-XX:+UseNUMA` `-XX:+UseCondCardMark` `-Xss1M` `-XX:MaxPermSize=128m` `-XX:+UseParallelGC` `-XX:+DoEscapeAnalysis` `-Xms1024m` `-Xmx1024m`.
+ 
+### <a id="Loops"></a> Loops
 
 The following benchmark compares the performance of several loops for different number of iterations.
 
@@ -88,7 +97,7 @@ throughput against the number of cycles is interesting. According to the figure 
 
 ![loops%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/loops/loops%25throughput.png)
 
-## Parallel Loops
+### <a id="ParallelLoops"></a> Parallel Loops
 
 The benchmark below measures how well executing these loops in parallel scales with the number of threads on our 24-cores server.
 
@@ -168,7 +177,7 @@ But how well do they scale on multicore hardware with the number of threads? Acc
 
 ![para-loops%speedup.plt](https://raw.github.com/sbocq/mbench/master/gallery/para-loops/para-loops_thread-pool%25speedup.png)
 
-## Maps
+### <a id="Maps"></a> Maps
 
 The benchmark below illustrates how to benchmark a scenario that performs side-effects that must be executed in a predefined sequence. In this scenario, we measure how fast we can add elements to a hash map and then remove them. At the same time, we compare the performance of immutable and mutable hash maps.
 
@@ -269,3 +278,50 @@ If we look now at how the throughput scales with the number of elements, we see 
 that its add operation is still optimized (probably by the JIT) as the number of iterations increases, still above 300000 additions.
 
 ![maps%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/maps/maps%25throughput.png)
+
+## <a id="Installing"></a> Installing
+
+MBench and its benchmarks (for Scala 2.9.3) are available in the Sonatype OSS Maven repository (which is mirrored on the central Maven repository as well):
+
+
+		group id: com.github.sbocq
+		artifact id: mbench_2.9.3 (or mbench-benchmarks_2.9.3)
+		version: 0.2
+
+
+The latest API documentation can be browsed online [here](http://sbocq.github.io/mbench).
+
+Alternatively you can download the Jar files directly from Sonatype:
+- [mbench.jar](https://oss.sonatype.org/content/groups/public/com/github/sbocq/mbench_2.9.3/0.2/mbench_2.9.3-0.2.jar)
+- [mbench-benchmarks.jar](https://oss.sonatype.org/content/groups/public/com/github/sbocq/mbench-benchmarks_2.9.3/0.2/mbench-benchmarks_2.9.3-0.2.jar)
+
+## <a id="Building"></a> Building From Sources
+
+Using [sbt](http://www.scala-sbt.org/release/docs/Getting-Started/Setup):
+
+		> git clone https://github.com/sbocq/mbench.git
+		> cd mbench
+		> sbt collect-jar
+
+## <a id="Running"></a> Running the Examples
+
+**Requirement**: Ensure that your runtime Java environment points to a JDK VM because mbench forks benchmarks in a server VM. 
+
+The examples can be launched in several manners: 
+
+- By importing the sources of `mbench` and `mbench-benchmarks` in your favorite IDE with the Scala plugin installed and running the examples as `main` classes.
+
+- From the command line ysing the jars with [Scala 2.9.3 library](http://www.scala-lang.org/downloads):
+
+	- Running the parallel loops in Linux:
+	
+		`$JAVA_HOME/bin/java -XX:+UseNUMA -cp mbench.jar:mbench-benchmarks.jar:scala-library.jar mbench.benchmarks.ParaLoops`
+		
+	- Running all the examples in Windows:
+	
+		`"%JAVA_HOME%"\bin\java -XX:+UseNUMA -cp mbench.jar;mbench-benchmarks.jar;scala-library.jar mbench.benchmarks.Benchmarks`
+		
+- From a sbt prompt:
+
+		> project mbench-benchmarks
+		> run
