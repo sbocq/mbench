@@ -2,8 +2,6 @@
 
 A microbenchmarking library for the JVM with a Gnuplot backend suitable for comparison and scalability benchmarks.
 
-Table of Content:
-
 - [Features](#-features)
 - [Examples](#-examples)
   - [Loops](#-loops)
