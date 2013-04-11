@@ -4,16 +4,16 @@ A microbenchmarking library for the JVM with a Gnuplot backend suitable for comp
 
 Table of Content:
 
-- [Features](#Features)
-- [Examples](#Examples)
-  - [Loops](#Loops)
-  - [Parallel Loops](#ParaLoops)
+- [Features](#-features)
+- [Examples](#-examples)
+  - [Loops](#-loops)
+  - [Parallel Loops](#-paraloops)
   - [Maps](#Maps)
 - [Installing](#Installing)
-- [Building From Sources](#Building)
-- [Running The Examples](#Running)
+- [Building From Sources](#-building)
+- [Running The Examples](#-running)
 
-## <a id="Features"></a> Features
+## <a id="features"></a> Features
 
 - Benchmarks can be launched directly from a main class independently from any specific build environment.
 - Each benchmarks is executed in isolation of each other in a fresh clone of the master JVM and automatically inherits its settings (e.g. class paths, system settings, command line options, etc.).
@@ -22,11 +22,11 @@ Table of Content:
 - Results from multiple `.dat` can be aggregated in a single plot to visualize how different tests compare with each other.
 - End users can specify custom columns that enrich results in real-time (e.g. like speedup or throughput).
 
-## <a id="Examples"></a> Examples of Benchmarks
+## <a id="examples"></a> Examples of Benchmarks
 
 The examples below are taken from the `mbench-benchmarks` project. All the benchmarks where run on a 24-cores (2200MHz each) Opteron server configured with Linux 3.8.6 and the realtime preemption patch, running Scala 2.9.3, with the following JVM flags: `-server` `-XX:+UseNUMA` `-XX:+UseCondCardMark` `-Xss1M` `-XX:MaxPermSize=128m` `-XX:+UseParallelGC` `-XX:+DoEscapeAnalysis` `-Xms1024m` `-Xmx1024m`.
  
-### <a id="Loops"></a> Loops
+### <a id="loops"></a> Loops
 
 The following benchmark compares the performance of several loops for different number of iterations.
 
@@ -97,7 +97,7 @@ throughput against the number of cycles is interesting. According to the figure 
 
 ![loops%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/loops/loops%25throughput.png)
 
-### <a id="ParallelLoops"></a> Parallel Loops
+### <a id="paraloops"></a> Parallel Loops
 
 The benchmark below measures how well executing these loops in parallel scales with the number of threads on our 24-cores server.
 
@@ -177,7 +177,7 @@ But how well do they scale on multicore hardware with the number of threads? Acc
 
 ![para-loops%speedup.plt](https://raw.github.com/sbocq/mbench/master/gallery/para-loops/para-loops_thread-pool%25speedup.png)
 
-### <a id="Maps"></a> Maps
+### <a id="maps"></a> Maps
 
 The benchmark below illustrates how to benchmark a scenario that performs side-effects that must be executed in a predefined sequence. In this scenario, we measure how fast we can add elements to a hash map and then remove them. At the same time, we compare the performance of immutable and mutable hash maps.
 
@@ -279,7 +279,7 @@ that its add operation is still optimized (probably by the JIT) as the number of
 
 ![maps%throughput.plt](https://raw.github.com/sbocq/mbench/master/gallery/maps/maps%25throughput.png)
 
-## <a id="Installing"></a> Installing
+## <a id="installing"></a> Installing
 
 MBench and its benchmarks (for Scala 2.9.3) are available in the Sonatype OSS Maven repository (which is mirrored on the central Maven repository as well):
 
@@ -295,7 +295,7 @@ Alternatively you can download the Jar files directly from Sonatype:
 - [mbench.jar](https://oss.sonatype.org/content/groups/public/com/github/sbocq/mbench_2.9.3/0.2/mbench_2.9.3-0.2.jar)
 - [mbench-benchmarks.jar](https://oss.sonatype.org/content/groups/public/com/github/sbocq/mbench-benchmarks_2.9.3/0.2/mbench-benchmarks_2.9.3-0.2.jar)
 
-## <a id="Building"></a> Building From Sources
+## <a id="building"></a> Building From Sources
 
 Using [sbt](http://www.scala-sbt.org/release/docs/Getting-Started/Setup):
 
@@ -303,7 +303,7 @@ Using [sbt](http://www.scala-sbt.org/release/docs/Getting-Started/Setup):
 		> cd mbench
 		> sbt collect-jar
 
-## <a id="Running"></a> Running the Examples
+## <a id="running"></a> Running the Examples
 
 **Requirement**: Ensure that your runtime Java environment points to a JDK VM because mbench forks benchmarks in a server VM. 
 
