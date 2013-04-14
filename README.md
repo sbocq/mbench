@@ -326,4 +326,4 @@ The examples can be launched in several manners:
 
 ## Projects Using Mbench
 
-- [Molecule](https://github.com/molecule-labs/molecule): Benchmark reports can be found [here](https://github.com/molecule-labs/molecule/tree/benchmark-reports)
+- [Molecule](https://github.com/molecule-labs/molecule): Benchmark reports can be found [here](https://github.com/molecule-labs/molecule/tree/benchmark-reports).
