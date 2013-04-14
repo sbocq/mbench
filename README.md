@@ -10,6 +10,7 @@ A microbenchmarking library for the JVM with a Gnuplot backend.
 - [Installing](#installing)
 - [Building From Sources](#building-from-sources)
 - [Running The Examples](#running-the-examples)
+- [Projects Using Mbench](#projects-using-mbench)
 
 ## Main Features
 
@@ -322,3 +323,7 @@ The examples can be launched in several manners:
 
 		> project mbench-benchmarks
 		> run
+
+## Projects Using Mbench
+
+- [Molecule](https://github.com/molecule-labs/molecule): overview reports can be found [here](https://github.com/molecule-labs/molecule/tree/benchmark-reports/megaphone/%2BUseNUMA%2BUseCondCardMark%2BUseParallelGC/overview).
