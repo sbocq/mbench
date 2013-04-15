@@ -65,10 +65,16 @@ object MBench {
   /**
    * Micro benchmark specific options passed to the cloned JVM.
    *
-   * (default: None)
-   * (ideas: -Xbatch,-XX::CICompilerCount=1,-Dsun.reflect.inflationThreshold=0)
+   * (default: -Xbatch,-XX::CICompilerCount=1,-Dsun.reflect.inflationThreshold=0)
    */
-  val microJvmOptions = Property("micro.jvm.options", properties, Many.empty[String])
+  val microJvmOptions = Property("micro.jvm.options", properties, Many(
+    // do compilation serially
+    "-Xbatch",
+    // make sure compilation doesn't run in parallel with itself
+    "-XX:CICompilerCount=1",
+    // generate classes or don't, but do it immediately
+    "-Dsun.reflect.inflationThreshold=0"
+  ))
 
   /**
    * Print some more information.

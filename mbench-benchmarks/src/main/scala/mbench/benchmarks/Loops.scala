@@ -34,7 +34,7 @@ object Loops {
   import mbench.benchmark._
   import mbench.gnuplot._
 
-  val input = (1 to 3) map (_ * 5000000)
+  val input = (1 to 3) map (_ * 500000)
   val cycles = Label[Int]("cycles")
   val throughput = Column.throughput(cycles)
 

@@ -49,8 +49,8 @@ object Measure {
     collectGarbage()
     val start = System.nanoTime
     val a = thunk
-    val time_ms = (System.nanoTime - start) / 1000000
-    (time_ms.toDouble / 1000, a)
+    val time_us = (System.nanoTime - start) / 1000
+    (time_us.toDouble / 1000000, a)
   }
 
   /**

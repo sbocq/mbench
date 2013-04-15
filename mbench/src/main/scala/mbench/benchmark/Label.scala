@@ -119,7 +119,7 @@ object Label {
    * @param values the values associated to each label
    * @return a sequence of values formatted according to the definition of their associated label.
    */
-  //def format(labels:Vector[Label[_]], values:Vector[Any]):Seq[String] = 
+  //def format(labels:Vector[Label[_]], values:Vector[Any]):Seq[String] =
   //  (labels zip values).map{case (l, v) => l.format(v)}
 
   /**
@@ -159,8 +159,12 @@ object Label {
   private val timeUnits = Seq("s", "ms", "us")
   private val memUnits = Seq("B", "kB", "KB", "MB")
 
-  private val doubleFmt = new java.text.DecimalFormat("#.000")
+  private val syms = new java.text.DecimalFormatSymbols(java.util.Locale.US)
+  private val doubleFmt = new java.text.DecimalFormat("#.000", syms)
   private val floatFmt = doubleFmt
+
+  private val doubleFmtUs = new java.text.DecimalFormat("#.000000", syms)
+  private val floatFmtUs = doubleFmtUs
 
   /**
    * Format a primitive value to a string
@@ -169,8 +173,10 @@ object Label {
    *  @return a string
    */
   def format(value: Any): String = value match {
-    case d: Double => doubleFmt format d
-    case f: Float => floatFmt format f
+    case d: Double if (d >= 0.001 || d == 0) => doubleFmt format d
+    case d: Double => doubleFmtUs format d
+    case f: Float if (f >= 0.001 || f == 0) => floatFmt format f
+    case f: Float => floatFmtUs format f
     case _ => value.toString
   }
 
