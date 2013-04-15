@@ -30,7 +30,7 @@
       </h4>
       
       <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>MBench properties</p><p> Properties can be overridden by creating a <code>mbench.properties</code> file. For example, to override
- the root directory where reports are created, add the property:</p><p> <code>reports.dir = myreports</code></p><p> in <code>mbench.properties</code>.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a target="_blank" href="https://github.com/sbocq/mbench/tree/v0.2/mbench/src/main/scala/mbench/MBench.scala">MBench.scala</a></dd></dl><div class="toggleContainer block">
+ the root directory where reports are created, add the property:</p><p> <code>reports.dir = myreports</code></p><p> in <code>mbench.properties</code>.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a target="_blank" href="https://github.com/sbocq/mbench/tree/0.2.1/mbench/src/main/scala/mbench/MBench.scala">MBench.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent">AnyRef, <span name="scala.Any" class="extype">Any</span></div>
         </div></div>
@@ -326,6 +326,20 @@ The this property to true to log on the standard output instead.</p><p>(default:
       </span>
       </h4>
       
+    </li><li visbl="pub" name="mbench.MBench#microJvmOptions" data-isabs="false">
+      <a id="microJvmOptions:Property[Many[String]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">microJvmOptions</span><span class="result">: <a name="mbench.properties.Property" class="extype" href="properties/Property.html">Property</a>[<a name="mbench.properties.Many" class="extype" href="properties/Many.html">Many</a>[String]]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Micro benchmark specific options passed to the cloned JVM.</p><div class="fullcomment"><div class="comment cmt"><p>Micro benchmark specific options passed to the cloned JVM.</p><p>(default: None)
+(ideas: -Xbatch,-XX::CICompilerCount=1,-Dsun.reflect.inflationThreshold=0)
+</p></div></div>
     </li><li visbl="pub" name="scala.AnyRef#ne" data-isabs="false">
       <a id="ne(AnyRef):Boolean"></a>
       <h4 class="signature">
