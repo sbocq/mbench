@@ -29,7 +29,7 @@ class Many[+T](val seq: Seq[T]) {
 }
 
 object Many {
-  def empty[T] = Many(Seq.empty)
+  def empty[T]: Many[T] = new Many(Seq.empty[T])
   def apply[T](t: T, ts: T*): Many[T] = new Many(t +: ts)
 
   implicit def manyToSeq[T](many: Many[T]): Seq[T] = many.seq
