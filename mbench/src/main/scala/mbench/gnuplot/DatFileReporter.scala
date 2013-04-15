@@ -117,7 +117,7 @@ object DatFileReporter extends Reporter[DatFile] {
     }
 
     private val fFmt: CustomFormat = new CustomFormat {
-      val f = new java.text.DecimalFormat("#.000")
+      val f = new java.text.DecimalFormat("#.000", new java.text.DecimalFormatSymbols(java.util.Locale.US))
       def format(a: Any): String =
         sFmt format (f format a)
     }
