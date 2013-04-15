@@ -77,10 +77,14 @@ object Host {
 
   /**
    * JVM options that start with `-XX:` minus the common special options configured by the
-   * MBench `common.special.options` property.
+   * MBench `common.special.options` property and the micro benchmarking options
+   * in `micro.jvm.options`.
    */
   def uncommonJvmSpecialOptions: List[String] =
-    jvmSpecialOptions.filterNot(option => MBench.commonSpecialOptions.get.exists(option.startsWith))
+    jvmSpecialOptions.filterNot(option =>
+      MBench.commonSpecialOptions.get.exists(option.startsWith) ||
+        MBench.microJvmOptions.get.exists(("-XX:" + option).startsWith)
+    )
 
   /** Hardware information. */
   object Hardware {

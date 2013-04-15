@@ -96,6 +96,7 @@ private[mbench] object Clone {
     args.add(classPath)
     mbenchProps.foreach { case (name, value) => args.add("-D" + name + "=" + value) }
     opts.foreach(args.add(_))
+    MBench.microJvmOptions.get.foreach(args.add(_))
     args.add(main)
 
     //println(System.getProperties.foreach(println))
