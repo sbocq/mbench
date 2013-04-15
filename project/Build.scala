@@ -20,7 +20,7 @@ object Build extends Build {
 
   lazy val buildSettings:Seq[Setting[_]] = Seq(
     organization       := "com.github.sbocq",
-	version            := "0.2-SNAPSHOT",
+	version            := "0.2.1",
 	manifestSetting,
     crossScalaVersions := Seq("2.9.3"),
     scalaVersion       <<= (crossScalaVersions) { versions => versions.head },
@@ -48,12 +48,12 @@ object Build extends Build {
 		"Sealed" -> "true"
       )
   }
-  
-  lazy val sharedSettings = 
-    Defaults.defaultSettings ++ 
-	ls.Plugin.lsSettings     ++ 
-	Collect.settings         ++ 
-	SbtScalariform.scalariformSettings ++	
+
+  lazy val sharedSettings =
+    Defaults.defaultSettings ++
+	ls.Plugin.lsSettings     ++
+	Collect.settings         ++
+	SbtScalariform.scalariformSettings ++
 	MimaPlugin.mimaDefaultSettings ++
 	Publish.settings ++
 	buildSettings ++
@@ -67,7 +67,7 @@ object Build extends Build {
 	)
 
   lazy val doNotPublish = Seq(publish := {}, publishLocal := {})
-  	  
+
   lazy val mbenchProject = Project(
     id = "mbench-project",
     base = file("."),
@@ -91,9 +91,9 @@ object Build extends Build {
      id = "mbench-benchmarks",
      base = file("mbench-benchmarks"),
      settings = sharedSettings ++ Seq(
-       description := "mbench-benchmarks project"       
+       description := "mbench-benchmarks project"
      )
   ) dependsOn(mbench % "compile;test->test")
-  
-  
+
+
 }
