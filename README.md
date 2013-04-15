@@ -286,12 +286,12 @@ MBench and its benchmarks (for Scala 2.9.3) are available in the Sonatype OSS Ma
 
 	group id: com.github.sbocq
 	artifact id: mbench_2.9.3 (or mbench-benchmarks_2.9.3)
-	version: 0.2
+	version: 0.2.1
 
 Alternatively you can download the Jar files directly from Sonatype:
 
-- [mbench.jar](https://oss.sonatype.org/content/groups/public/com/github/sbocq/mbench_2.9.3/0.2/mbench_2.9.3-0.2.jar)
-- [mbench-benchmarks.jar](https://oss.sonatype.org/content/groups/public/com/github/sbocq/mbench-benchmarks_2.9.3/0.2/mbench-benchmarks_2.9.3-0.2.jar)
+- [mbench.jar](https://oss.sonatype.org/content/groups/public/com/github/sbocq/mbench_2.9.3/0.2.1/mbench_2.9.3-0.2.1.jar)
+- [mbench-benchmarks.jar](https://oss.sonatype.org/content/groups/public/com/github/sbocq/mbench-benchmarks_2.9.3/0.2.1/mbench-benchmarks_2.9.3-0.2.1.jar)
 
 ## Building From Sources
 
