@@ -55,7 +55,7 @@ class Plot(
     else Some(formatNames(fs.flatten.map(_.apply(datFile)), ":"))
 
   private val plotLineTitle: DatFile => Option[String] =
-    if (datFiles.isEmpty || datFiles.tail.isEmpty) // single line 
+    if (datFiles.isEmpty || datFiles.tail.isEmpty) // single line
       _ => None
     else {
       combineF(Seq(
@@ -85,7 +85,7 @@ class Plot(
   }
 
   private[this] final val titleSuffix: String = " - " + Host.Hardware.shortString + ", " + Host.javaRuntimeVersion + {
-    val options = Host.uncommonJvmSpecialOptions.filterNot(Gnuplot.titleIncludeOptions.get.contains)
+    val options = Host.uncommonJvmSpecialOptions.filter(Gnuplot.titleIncludeOptions.get.contains)
     if (options.isEmpty) "" else options.mkString(", [", ",", "]")
   }
 
