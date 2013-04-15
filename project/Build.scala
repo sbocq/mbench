@@ -83,7 +83,7 @@ object Build extends Build {
     id = "mbench",
     base = file("mbench"),
     settings = sharedSettings ++ Seq(
-	  description := "mbench project"
+	  description := "A benchmarking tool for the JVM"
 	)
   )
 
@@ -91,7 +91,7 @@ object Build extends Build {
      id = "mbench-benchmarks",
      base = file("mbench-benchmarks"),
      settings = sharedSettings ++ Seq(
-       description := "mbench-benchmarks project"
+       description := "A standard benchmark suite"
      )
   ) dependsOn(mbench % "compile;test->test")
 
