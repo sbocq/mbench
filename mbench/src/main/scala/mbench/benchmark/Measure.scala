@@ -39,26 +39,20 @@ object Measure {
 
   private[mbench] val labels = Vector(Label.time, Label.cvar)
 
-  /**
-   * Measure the elapsed time in seconds to evaluate a thunk of code.
-   *
-   * @param thunk the thunk to evaluate.
-   * @return the time and the result of the thunk
-   */
-  def time[A](thunk: => A): (Double, A) = {
-    collectGarbage()
-    val start = System.nanoTime
-    val a = thunk
-    val time_us = (System.nanoTime - start) / 1000
-    (time_us.toDouble / 1000000, a)
-  }
+  @volatile private[this] var dummy = 0
+
+  private[this] def microWarmup() =
+    new java.io.PrintStream(
+      new java.io.BufferedOutputStream(
+        new java.io.ByteArrayOutputStream()
+      )).println(" " + dummy)
 
   /**
-   * After every test run, we collect garbage by calling System.gc()
+   * After every test, we collect garbage by calling System.gc()
    * and sleeping for a short while to make sure that the garbage
    * collector has had a chance to collect objects.
    */
-  private def collectGarbage() {
+  private[this] def collectGarbage() {
     for (i <- 0 to 2) {
       System.gc()
       try {
@@ -68,6 +62,30 @@ object Measure {
           Thread.currentThread().interrupt()
           return
       }
+    }
+  }
+
+  /**
+   * Measure the elapsed time in seconds to evaluate a thunk of code.
+   *
+   * @param thunk the thunk to evaluate.
+   * @return the time and the result of the thunk
+   */
+  def time[A](thunk: => A): (Double, A) = {
+    collectGarbage()
+    microWarmup()
+    val start = System.nanoTime
+    val a = thunk
+    val time_us = (System.nanoTime - start) / 1000
+    if (time_us > 3000)
+      (time_us.toDouble / 1000000, a)
+    else {
+      // microbenchmark => repeat once to shave off the mysterious
+      // overhead caused by collectGarbage()
+      val start = System.nanoTime
+      val a = thunk
+      val time_us = (System.nanoTime - start) / 1000
+      (time_us.toDouble / 1000000, a)
     }
   }
 
