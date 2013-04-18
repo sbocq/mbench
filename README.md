@@ -1,6 +1,6 @@
 # mbench
 
-A microbenchmarking library for the JVM with a Gnuplot backend.
+A benchmarking library for the JVM with a Gnuplot backend.
 
 - [Main Features](#main-features)
 - [Examples](#examples)
