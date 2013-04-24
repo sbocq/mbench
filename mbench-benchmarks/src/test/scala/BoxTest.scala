@@ -8,7 +8,8 @@ class BoxTest extends org.scalatest.FlatSpec {
   import BoxTest._
 
   def assertSimilar(testName: String, mtime: Double, ltime: Double) =
-    assert((math.abs(mtime - ltime) / mtime * 100) < 20 || (mtime < ltime), // somehow this can happen in some runs
+    // Serious glitches can happen in some runs since we run the local tests in the same JVM
+    assert((math.abs(mtime - ltime) / mtime * 100) < 15 || (mtime < ltime),
       testName + ":mbench time [" + mtime + "us] differs importantly from local time [" + ltime + "us]")
 
   "MBench" should "report similar results as local benchmark for sum tests" in {
@@ -32,7 +33,8 @@ class BoxTest extends org.scalatest.FlatSpec {
     val lrs = Seq(timecount(timeprimcountnan()),
       timecount(timelibcountnan()),
       timecount(timeminicountnan()),
-      timecount(timeiocountnan()))
+      timecount(timeiocountnan())
+    )
     println("local counts:" + lrs)
 
     counts.zip(mcrs.zip(lrs)).foreach { case (t, (m, l)) => assertSimilar(t.name, m, l) }
