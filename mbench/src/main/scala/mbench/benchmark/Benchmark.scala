@@ -207,11 +207,14 @@ case class Benchmark[I, -C, R](
    * @return the report of the benchmark, as established by its reporter.
    */
   def local[S, Ci <: C](config: Config[I, Ci, S], test: Test[S, Ci, I]): R = {
+
+    // Very important to move these two statements before warmups for microbenchmarks!
+    val (labels, rowF) = Column.toFunction(ilabel, columns)
+    val report = reporter.open(name, test.name, config, labels)
+
     if (warmups > 0) {
       _eval("warmup", warmups, config, is.head, test)
     }
-    val (labels, rowF) = Column.toFunction(ilabel, columns)
-    val report = reporter.open(name, test.name, config, labels)
     is.foldLeft((EmptyState, report)) {
       case ((s0, r), i) =>
         val evaluation = _eval("benchmark", runs, config, i, test)
@@ -284,18 +287,19 @@ case class Benchmark[I, -C, R](
    * @return the report of the benchmark, as established by its reporter.
    */
   def local[S, Ci <: C](config: Config[I, Ci, S], test: TestSeq[S, Ci, I]): Seq[R] = {
-    val setup = config.setUp(is.head)
-    val (testNames, _) =
-      if (warmups == 0)
-        _evalSeq("analyzing sequence", 1, setup, config, is.head, test)
-      else
-        _evalSeq("warmup", warmups, setup, config, is.head, test)
-    config.tearDown(setup)
 
+    // Very important to move these statements before warmups for microbenchmarks!
     val (labels, rowF) = Column.toFunction(ilabel, columns)
 
+    val setup = config.setUp(is.head)
+    val (testNames, _) = _evalSeq("analyzing sequence", 1, setup, config, is.head, test)
     val rs0: Vector[(State, Report[R])] =
       testNames map (n => (EmptyState, reporter.open(name, n, config, labels)))
+
+    if (warmups > 0)
+      _evalSeq("warmup", warmups, setup, config, is.head, test)
+
+    config.tearDown(setup)
 
     val rs = is.foldLeft(rs0) { (rs, i) =>
       benchmarkSeq(runs, rs, rowF, config, i, test)
@@ -345,7 +349,7 @@ case class Benchmark[I, -C, R](
     // 1) Collect names and results of evaluations (Long, Long) for each test in each run
 
     // Test results for each run
-    // Vector[runNo][TestNo](Time) 
+    // Vector[runNo][TestNo](Time)
     val ress0 = Vector[Vector[Double]]()
 
     val (names, ress) =

@@ -101,27 +101,27 @@ object DatFileReporter extends Reporter[DatFile] {
 
   object DatReport {
 
-    val cellWidth = java.lang.Long.MIN_VALUE.toString.length
+    private[this] final val cellWidth = java.lang.Long.MIN_VALUE.toString.length
 
-    private val dFmt: String =
+    private[this] final val dFmt: String =
       "%" + cellWidth + "d"
 
-    private val sFmt: String =
+    private[this] final val sFmt: String =
       "%" + cellWidth + "s"
 
-    private val cFmt: String =
+    private final val cFmt: String =
       "%" + (cellWidth - 2) + "s"
 
     trait CustomFormat {
       def format(a: Any): String
     }
 
-    private val fFmt: CustomFormat = new CustomFormat {
+    private[this] final val fFmt: CustomFormat = new CustomFormat {
       def format(a: Any): String =
         sFmt.format(Label.format(a))
     }
 
-    def format(value: Any): String = value match {
+    final def format(value: Any): String = value match {
       case l: Long => dFmt format l
       case d: Double => fFmt format d
       case i: Int => dFmt format i
