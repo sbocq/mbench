@@ -20,12 +20,12 @@ object Build extends Build {
 
   lazy val buildSettings:Seq[Setting[_]] = Seq(
     organization       := "com.github.sbocq",
-	version            := "0.2.2",
+	version            := "0.2.3",
 	manifestSetting,
     crossScalaVersions := Seq("2.9.3"),
     scalaVersion       <<= (crossScalaVersions) { versions => versions.head },
     scalacOptions      ++= Seq("-unchecked", "-deprecation", "-Xcheckinit", "-encoding", "utf8"),
-    scalacOptions      ++= Seq(), // Seq("-language:higherKinds", "-language:postfixOps", "-language:implicitConversions", "-language:reflectiveCalls", "-language:existentials"),
+    scalacOptions      ++= Seq(), //Seq("-language:higherKinds", "-language:postfixOps", "-language:implicitConversions", "-language:reflectiveCalls", "-language:existentials"),
     javacOptions       ++= Seq("-target", "1.6", "-source", "1.6", "-Xlint:deprecation"),
     resolvers          ++= Seq(sonatypeNexusSnapshots),
 	shellPrompt        := { "sbt (%s)> " format projectId(_) },
@@ -56,11 +56,14 @@ object Build extends Build {
 	SbtScalariform.scalariformSettings ++
 	MimaPlugin.mimaDefaultSettings ++
 	Publish.settings ++
-	buildSettings ++
-    Seq(
+	buildSettings
+
+  lazy val runSettings =
+          Seq(
+          scalacOptions ++= Seq("-Ydependent-method-types"),
 	  fork := true,
 	  fork in test := true,
-	  javaOptions <++= (fullClasspath in Runtime).map(cp => Seq("-cp", cp.files.mkString(System.getProperty("path.separator")), "-Dmbench.log.stdout=true", "-Dmbench.new.date.dir=sbtrun")),
+	  javaOptions <++= (fullClasspath in Runtime).map(cp => Seq("-cp", cp.files.mkString(System.getProperty("path.separator")), "-server", "-Dmbench.log.stdout=true", "-Dmbench.new.date.dir=sbtrun")),
       libraryDependencies <++= scalaVersion(sv => Seq(
         Test.scalatest(sv)
       ))
@@ -90,7 +93,7 @@ object Build extends Build {
   lazy val mbenchBenchmarks = Project(
      id = "mbench-benchmarks",
      base = file("mbench-benchmarks"),
-     settings = sharedSettings ++ Seq(
+     settings = sharedSettings ++ runSettings ++ Seq(
        description := "A standard benchmark suite"
      )
   ) dependsOn(mbench % "compile;test->test")
