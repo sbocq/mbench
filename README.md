@@ -348,8 +348,8 @@ javaOptions <++= (fullClasspath in Runtime).map(cp =>
 
 The additional options tell `mbench` to log messages on `stdout` (default is `stderr`) and 
 to always save its reports in a directory called `sbtrun` (default is a directory named after the date of the benchmark). 
-Mbench supports several configuration properties that can be either passed on the command line 
-like this or, alternatively, stored in a `mbench.properties` file. These are listed in 
+Mbench supports several configuration properties that can be either passed on the command line, 
+like this, or stored in a `mbench.properties` file. These properties are listed in 
 the [online documentation](http://sbocq.github.io/mbench/#mbench.MBench$).
 
 ## Projects Using MBench
