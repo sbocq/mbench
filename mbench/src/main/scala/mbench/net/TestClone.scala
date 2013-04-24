@@ -71,7 +71,7 @@ private[mbench] object TestClone {
       val out = new ObjectOutputStream(csock.getOutputStream())
       writeResult(out, datFile)
     } catch {
-      case t => System.err.println(t)
+      case t: Throwable => System.err.println(t)
     } finally {
       csock.close();
     }

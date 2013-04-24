@@ -1,5 +1,6 @@
 
-/** A Micro benchmark test
+/**
+ * A Micro benchmark test
  */
 class BoxTest extends org.scalatest.FlatSpec {
 

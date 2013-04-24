@@ -130,7 +130,7 @@ private[mbench] object Clone {
       result
 
     } catch {
-      case t => csock.close(); println(t); throw t
+      case t: Throwable => csock.close(); println(t); throw t
     }
   }
 }

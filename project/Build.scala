@@ -22,8 +22,8 @@ object Build extends Build {
     organization       := "com.github.sbocq",
 	version            := "0.2.3",
 	manifestSetting,
-    crossScalaVersions := Seq("2.9.3"),
-    scalaVersion       <<= (crossScalaVersions) { versions => versions.head },
+    crossScalaVersions := Seq("2.9.3", "2.10.1"),
+    scalaVersion       := "2.10.1",
     scalacOptions      ++= Seq("-unchecked", "-deprecation", "-Xcheckinit", "-encoding", "utf8"),
     scalacOptions      ++= Seq(), //Seq("-language:higherKinds", "-language:postfixOps", "-language:implicitConversions", "-language:reflectiveCalls", "-language:existentials"),
     javacOptions       ++= Seq("-target", "1.6", "-source", "1.6", "-Xlint:deprecation"),
@@ -60,7 +60,8 @@ object Build extends Build {
 
   lazy val runSettings =
           Seq(
-          scalacOptions ++= Seq("-Ydependent-method-types"),
+          scalacOptions <++= (scalaVersion).map(sv =>
+              if (sv.startsWith("2.9")) Seq("-Ydependent-method-types") else Seq.empty[String]),
 	  fork := true,
 	  fork in test := true,
 	  javaOptions <++= (fullClasspath in Runtime).map(cp => Seq("-cp", cp.files.mkString(System.getProperty("path.separator")), "-server", "-Dmbench.log.stdout=true", "-Dmbench.new.date.dir=sbtrun")),

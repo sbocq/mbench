@@ -116,7 +116,7 @@ object DatFile {
       try {
         lb.append(Some(valueOf(value)))
       } catch {
-        case _ =>
+        case _: Throwable =>
           System.err.println("Warning '" + fileName + "': row " + rowIndex + ": cannot cast value " + value)
           lb.append(None)
       }
