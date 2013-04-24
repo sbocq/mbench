@@ -64,13 +64,13 @@ case class Property[T](name: String, properties: Properties, defaultValue: T)(im
 
           val err = seq.collect { case Left(e) => e }
           if (err.isEmpty)
-            new Many(seq.map { case Right(v) => v })
+            new Many(seq.collect { case Right(v) => v })
           else
             Left(err.mkString)
         case _ => Left("type not supported: " + typ + " for property " + name + ":" + string)
       }
     )
-  } catch { case t => castError(typ, name, string, t) }
+  } catch { case t: Throwable => castError(typ, name, string, t) }
 
   private[this] def castError(expectedType: String, name: String, value: String, t: Throwable): Left[String, Any] =
     Left("Property " + name + ": cannot convert " + value + " to " + expectedType + " - cause:" + t)

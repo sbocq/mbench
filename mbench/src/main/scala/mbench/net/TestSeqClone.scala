@@ -72,7 +72,7 @@ private[mbench] object TestSeqClone {
       val out = new ObjectOutputStream(csock.getOutputStream())
       writeResults(out, results)
     } catch {
-      case t => System.err.println(t)
+      case t: Throwable => System.err.println(t)
     } finally {
       csock.close(); csock.close()
     }
