@@ -352,6 +352,6 @@ Mbench supports several configuration properties that can be either passed on th
 like this or, alternatively, stored in a `mbench.properties` file. These are listed in 
 the [online documentation](http://sbocq.github.io/mbench/#mbench.MBench$).
 
-## Projects Using Mbench
+## Projects Using MBench
 
-- [Molecule](https://github.com/molecule-labs/molecule: overview reports can be found [here](https://github.com/molecule-labs/molecule/tree/benchmark-reports/megaphone/%2BUseNUMA%2BUseCondCardMark%2BUseParallelGC/overview).
+- [Molecule](https://github.com/molecule-labs/molecule): Molecule is using extensively `mbench` to compare the scalability on multicore hardware of different runtime options and different frameworks. Its overview reports can be found [here](https://github.com/molecule-labs/molecule/tree/benchmark-reports/megaphone/%2BUseNUMA%2BUseCondCardMark%2BUseParallelGC/overview).
