@@ -10,13 +10,14 @@ A benchmarking library for the JVM with a Gnuplot backend.
 - [Installing](#installing)
 - [Building From Sources](#building-from-sources)
 - [Running The Examples](#running-the-examples)
+- [Sample SBT Project File](#sample-sbt-project-file)
 - [Projects Using Mbench](#projects-using-mbench)
 
 ## Main Features
 
 - **Simple setup**. The library executes benchmarks in isolation from each other by cloning the current VM programmatically. Multiple benchmarks can then be launched directly from a main class, like any regular application, without the need to setup an additional build or script environment.
 - **Customizable results**. The default benchmark definition produces the inputs passed to a test, the median execution time of the test for every input, and the coefficient of variation obtained for several runs, as columns in a table. This definition can be augmented programmatically with application specific columns (e.g. parallel speedup or throughput) that are computed in realtime using previous results, the current input of a test and/or its configuration parameters.
-- **Comparison friendly**. To ease comparisons, the same benchmark definition can be reused to evaluate multiple tests in different configurations. The Gnuplot backend saves these results in separate '.dat' files and features an API to generate Gnuplot scripts that permit to visualise multiple results on a single plot.
+- **Comparison friendly**. To ease comparisons, the same benchmark definition can be reused to evaluate multiple tests in different configurations. The Gnuplot backend saves these results in separate '.dat' files and features an API to generate Gnuplot scripts that aggregate multiple results on a single plot.
 
 ## Examples
 
@@ -279,17 +280,17 @@ If we look now at how the throughput scales with the number of elements, we see 
 
 ## Installing
 
-MBench and its benchmarks (for Scala 2.9.3) are available in the Sonatype OSS Maven repository (which is mirrored on the central Maven repository as well):
+MBench and its benchmarks (for Scala 2.9.3, 2.10.1) are available in the Sonatype OSS Maven repository (which is mirrored on the central Maven repository as well):
 
 
 	group id: com.github.sbocq
-	artifact id: mbench_2.9.3 (or mbench-benchmarks_2.9.3)
-	version: 0.2.2
+	artifact id: mbench_2.9.3 or mbench_2.10 (or mbench-benchmarks_*)
+	version: 0.2.4
 
 Alternatively you can download the Jar files directly from Sonatype:
 
-- [mbench.jar](https://oss.sonatype.org/content/groups/public/com/github/sbocq/mbench_2.9.3/0.2.2/mbench_2.9.3-0.2.2.jar)
-- [mbench-benchmarks.jar](https://oss.sonatype.org/content/groups/public/com/github/sbocq/mbench-benchmarks_2.9.3/0.2.2/mbench-benchmarks_2.9.3-0.2.2.jar)
+- [mbench.jar (2.9.3)](https://oss.sonatype.org/content/groups/public/com/github/sbocq/mbench_2.9.3/0.2.4/mbench_2.9.3-0.2.4.jar)
+- [mbench.jar (2.10)](https://oss.sonatype.org/content/groups/public/com/github/sbocq/mbench_2.10/0.2.4/mbench_2.10-0.2.4.jar)
 
 ## Building From Sources
 
@@ -322,6 +323,35 @@ The examples can be launched in several manners:
 		> project mbench-benchmarks
 		> run
 
+## Sample SBT Project File
+
+Here is a simple `build.sbt` file that can be used to build a simple `mbench` project with `sbt`:
+
+```scala
+name := "mybenchmarks"
+
+version := "0.1"
+
+scalaVersion := "2.10.1"
+
+resolvers ++= Seq(
+    "Sonatype Nexus Releases" at "https://oss.sonatype.org/content/repositories/releases")
+
+libraryDependencies += "com.github.sbocq" %% "mbench" % "0.2.4"
+
+fork := true
+
+javaOptions <++= (fullClasspath in Runtime).map(cp =>
+    Seq("-cp", cp.files.mkString(System.getProperty("path.separator")),
+        "-Dmbench.log.stdout=true", "-Dmbench.new.date.dir=sbtrun"))
+```
+
+The additional options tell `mbench` to log messages on `stdout` (default is `stderr`) and 
+to always save its reports in a directory called `sbtrun` (default is a directory named after the date of the benchmark). 
+Mbench supports several configuration properties that can be either passed on the command line 
+like this or, alternatively, stored in a `mbench.properties` file. These are listed in 
+the [online documentation](http://sbocq.github.io/mbench/#mbench.MBench$).
+
 ## Projects Using Mbench
 
-- [Molecule](https://github.com/molecule-labs/molecule): overview reports can be found [here](https://github.com/molecule-labs/molecule/tree/benchmark-reports/megaphone/%2BUseNUMA%2BUseCondCardMark%2BUseParallelGC/overview).
+- [Molecule](https://github.com/molecule-labs/molecule: overview reports can be found [here](https://github.com/molecule-labs/molecule/tree/benchmark-reports/megaphone/%2BUseNUMA%2BUseCondCardMark%2BUseParallelGC/overview).
