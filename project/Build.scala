@@ -20,7 +20,7 @@ object Build extends Build {
 
   lazy val buildSettings:Seq[Setting[_]] = Seq(
     organization       := "com.github.sbocq",
-	version            := "0.2.3",
+	version            := "0.2.4",
 	manifestSetting,
     crossScalaVersions := Seq("2.9.3", "2.10.1"),
     scalaVersion       := "2.10.1",
